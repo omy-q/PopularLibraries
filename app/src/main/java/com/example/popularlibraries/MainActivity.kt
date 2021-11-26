@@ -6,11 +6,11 @@ import com.example.popularlibraries.databinding.ActivityMainBinding
 import com.example.popularlibraries.presenter.MainPresenter
 import com.example.popularlibraries.view.MainView
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : AppCompatActivity(){
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
-    private val presenter = MainPresenter(this)
+    private val presenter = MainPresenter(this.MainViewImpl())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,15 +36,18 @@ class MainActivity : AppCompatActivity(), MainView {
         }
     }
 
-    override fun setFirstBtnText(text: String) {
-        binding.btnCounter1.text = text
-    }
+    inner class MainViewImpl: MainView{
 
-    override fun setSecondBtnText(text: String) {
-        binding.btnCounter2.text = text
-    }
+        override fun setFirstBtnText(text: String) {
+            binding.btnCounter1.text = text
+        }
 
-    override fun setThirdBtnText(text: String) {
-        binding.btnCounter3.text = text
+        override fun setSecondBtnText(text: String) {
+            binding.btnCounter2.text = text
+        }
+
+        override fun setThirdBtnText(text: String) {
+            binding.btnCounter3.text = text
+        }
     }
 }
