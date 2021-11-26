@@ -1,27 +1,30 @@
 package com.example.popularlibraries.presenter
 
 import com.example.popularlibraries.model.CountersModel
-import com.example.popularlibraries.R
 import com.example.popularlibraries.view.MainView
 
-class MainPresenter(val view: MainView) {
-    val model = CountersModel()
+class MainPresenter(private val view: MainView) {
 
-    //Архитектурная ошибка. В качестве практического задания -- исправить
-    fun counterClick(id: Int){
-        when(id){
-            R.id.btn_counter1 -> {
-                val nextValue = model.next(0)
-                view.setButtonText(0, nextValue.toString())
-            }
-            R.id.btn_counter2 -> {
-                val nextValue = model.next(1)
-                view.setButtonText(1, nextValue.toString())
-            }
-            R.id.btn_counter3 -> {
-                val nextValue = model.next(2)
-                view.setButtonText(2, nextValue.toString())
-            }
-        }
+    private val model = CountersModel()
+
+    fun initView(){
+        view.setFirstBtnText(model.getCounterValue(0).toString())
+        view.setSecondBtnText(model.getCounterValue(1).toString())
+        view.setThirdBtnText(model.getCounterValue(2).toString())
     }
+
+    fun onFirstBtnClicked(){
+        model.incrementCounter(0)
+        view.setFirstBtnText(model.getCounterValue(0).toString())
+    }
+    fun onSecondBtnClicked(){
+        model.incrementCounter(1)
+        view.setSecondBtnText(model.getCounterValue(1).toString())
+    }
+    fun onThirdBtnClicked(){
+        model.incrementCounter(2)
+        view.setThirdBtnText(model.getCounterValue(2).toString())
+
+    }
+
 }
