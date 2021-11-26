@@ -1,4 +1,8 @@
-package com.example.popularlibraries
+package com.example.popularlibraries.presenter
+
+import com.example.popularlibraries.model.CountersModel
+import com.example.popularlibraries.R
+import com.example.popularlibraries.view.MainView
 
 class MainPresenter(val view: MainView) {
     val model = CountersModel()

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.popularlibraries.databinding.ActivityMainBinding
+import com.example.popularlibraries.presenter.MainPresenter
+import com.example.popularlibraries.view.MainView
 
 class MainActivity : AppCompatActivity(), MainView {
 
