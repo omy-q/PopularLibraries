@@ -1,7 +1,8 @@
 package com.example.popularlibraries.navigation
 
-import com.github.terrakok.cicerone.Screen
+import com.example.popularlibraries.ui.users.view.UserFragment
+import com.github.terrakok.cicerone.androidx.FragmentScreen
 
-interface Screens {
-    fun users() : Screen
+object Screens {
+    fun users() = FragmentScreen{UserFragment()}
 }
