@@ -1,4 +1,4 @@
-package com.example.popularlibraries
+package com.example.popularlibraries.ui.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
