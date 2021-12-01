@@ -1,11 +1,33 @@
 package com.example.popularlibraries.ui.main.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.popularlibraries.App
+import com.example.popularlibraries.R
+import com.example.popularlibraries.databinding.ActivityMainBinding
+import com.example.popularlibraries.ui.main.presenter.MainPresenter
+import com.github.terrakok.cicerone.androidx.AppNavigator
+import moxy.MvpAppCompatActivity
+import moxy.ktx.moxyPresenter
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : MvpAppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private val navigator = AppNavigator(this, R.id.container)
+    private val presenter by moxyPresenter {
+        MainPresenter(App.instance.router)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
+
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        App.instance.navigationHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        App.instance.navigationHolder.removeNavigator()
     }
 }
