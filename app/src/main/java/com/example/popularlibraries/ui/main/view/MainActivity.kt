@@ -10,7 +10,7 @@ import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
-class MainActivity : MvpAppCompatActivity() {
+class MainActivity : MvpAppCompatActivity(), MainView {
     private lateinit var binding: ActivityMainBinding
     private val navigator = AppNavigator(this, R.id.container)
     private val presenter by moxyPresenter {

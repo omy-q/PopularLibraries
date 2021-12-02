@@ -11,19 +11,13 @@ import moxy.ktx.moxyPresenter
 class UserInfoFragment() : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoBinding::inflate),
     UserInfoView {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
-        _binding = FragmentUserInfoBinding.inflate(inflater, container, false)
-        return binding.root
+    private val presenter by moxyPresenter {
+        UserInfoPresenter(App.instance.router)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val login = arguments?.getString(USER_LOGIN_ID).toString()
     }
 
     override fun backPressed(): Boolean {
@@ -31,7 +25,14 @@ class UserInfoFragment() : BaseFragment<FragmentUserInfoBinding>(FragmentUserInf
         return true
     }
 
-    override fun setLogin(login: String) {
-        TODO("Not yet implemented")
+    companion object{
+        private const val USER_LOGIN_ID = "user_login_id"
+        fun newInstance(login: String): UserInfoFragment{
+            val args = Bundle()
+            args.putString(USER_LOGIN_ID, login)
+            val fragment = UserInfoFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

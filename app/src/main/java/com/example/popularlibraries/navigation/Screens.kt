@@ -6,5 +6,5 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 object Screens {
     fun users() = FragmentScreen{UsersFragment()}
-    fun userInfo(login: String) = FragmentScreen{UserInfoFragment()}
+    fun userInfo(login: String) = FragmentScreen{UserInfoFragment.newInstance(login)}
 }
