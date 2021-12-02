@@ -1,0 +1,29 @@
+package com.example.popularlibraries.ui.users.view
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.example.popularlibraries.databinding.ItemUsersBinding
+import com.example.popularlibraries.ui.users.presenter.UsersPresenter
+
+class UserAdapter(private val presenter: UsersPresenter.UserListPresenter) :
+    RecyclerView.Adapter<UserHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
+        return UserHolder(
+            ItemUsersBinding.inflate(
+                (LayoutInflater.from(parent.context)), parent, false)).apply {
+                    itemView.setOnClickListener {
+                        presenter.itemClickListener
+                    }
+        }
+    }
+
+    override fun onBindViewHolder(holder: UserHolder, position: Int) {
+        presenter.bindView(holder.apply { pos = position })
+    }
+
+    override fun getItemCount(): Int {
+        return presenter.getCount()
+    }
+}
