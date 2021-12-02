@@ -1,15 +1,15 @@
 package com.example.popularlibraries.ui.user_info.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import com.example.popularlibraries.App
 import com.example.popularlibraries.databinding.FragmentUserInfoBinding
-import moxy.MvpAppCompatFragment
+import com.example.popularlibraries.ui.base.BaseFragment
+import com.example.popularlibraries.ui.user_info.presenter.UserInfoPresenter
+import moxy.ktx.moxyPresenter
 
-class UserInfoFragment():MvpAppCompatFragment(), UserInfoView {
-    private var _binding : FragmentUserInfoBinding? = null
-    private val binding get() = _binding!!
+class UserInfoFragment() : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoBinding::inflate),
+    UserInfoView {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,6 +26,10 @@ class UserInfoFragment():MvpAppCompatFragment(), UserInfoView {
         _binding = null
     }
 
+    override fun backPressed(): Boolean {
+        presenter.backPressed()
+        return true
+    }
 
     override fun setLogin(login: String) {
         TODO("Not yet implemented")

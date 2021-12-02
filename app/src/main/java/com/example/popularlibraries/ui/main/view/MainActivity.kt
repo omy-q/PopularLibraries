@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.example.popularlibraries.App
 import com.example.popularlibraries.R
 import com.example.popularlibraries.databinding.ActivityMainBinding
+import com.example.popularlibraries.ui.base.BackButtonListener
 import com.example.popularlibraries.ui.main.presenter.MainPresenter
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
@@ -29,5 +30,15 @@ class MainActivity : MvpAppCompatActivity() {
     override fun onPause() {
         super.onPause()
         App.instance.navigationHolder.removeNavigator()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        supportFragmentManager.fragments.forEach {
+            if (it is BackButtonListener && it.backPressed()){
+                return
+            }
+        }
+        presenter.backPressed()
     }
 }
