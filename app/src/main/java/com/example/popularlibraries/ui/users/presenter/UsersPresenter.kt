@@ -2,6 +2,7 @@ package com.example.popularlibraries.ui.users.presenter
 
 import com.example.popularlibraries.data.User
 import com.example.popularlibraries.model.UsersModel
+import com.example.popularlibraries.navigation.Screens.userInfo
 import com.example.popularlibraries.ui.base.ListPresenter
 import com.example.popularlibraries.ui.users.view.UserItemView
 import com.example.popularlibraries.ui.users.view.UsersView
@@ -17,7 +18,9 @@ class UsersPresenter(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         loadData()
-        usersListPresenter.itemClickListener = {}
+        usersListPresenter.itemClickListener = { pos ->
+            router.navigateTo(userInfo(usersListPresenter.users[pos].login))
+        }
     }
 
     private fun loadData(){
@@ -27,7 +30,7 @@ class UsersPresenter(
 
     class UserListPresenter: ListPresenter<UserItemView> {
         val users = mutableListOf<User>()
-        override var itemClickListener =  {}
+        override var itemClickListener: (pos: Int) -> Unit = {}
 
         override fun getCount() = users.size
 

@@ -14,7 +14,7 @@ class UserAdapter(private val presenter: UsersPresenter.UserListPresenter) :
             ItemUsersBinding.inflate(
                 (LayoutInflater.from(parent.context)), parent, false)).apply {
                     itemView.setOnClickListener {
-                        presenter.itemClickListener
+                        presenter.itemClickListener(pos)
                     }
         }
     }
