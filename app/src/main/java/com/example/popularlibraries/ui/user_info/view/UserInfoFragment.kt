@@ -25,10 +25,7 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
         binding.userInfoLogin.text = login
     }
 
-    override fun backPressed(): Boolean {
-        presenter.backPressed()
-        return true
-    }
+    override fun backPressed() = presenter.backPressed()
 
     companion object{
         private const val USER_LOGIN_ID = "user_login_id"

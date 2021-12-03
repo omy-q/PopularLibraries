@@ -27,10 +27,7 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
         initView()
     }
 
-    override fun backPressed(): Boolean {
-        presenter.backPressed()
-        return true
-    }
+    override fun backPressed() = presenter.backPressed()
 
     private fun initView() {
         with(binding) {
