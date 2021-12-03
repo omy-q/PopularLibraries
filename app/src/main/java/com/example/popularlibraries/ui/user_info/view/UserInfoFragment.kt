@@ -8,7 +8,7 @@ import com.example.popularlibraries.ui.base.BaseFragment
 import com.example.popularlibraries.ui.user_info.presenter.UserInfoPresenter
 import moxy.ktx.moxyPresenter
 
-class UserInfoFragment() : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoBinding::inflate),
+class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoBinding::inflate),
     UserInfoView {
 
     private val presenter by moxyPresenter {
@@ -18,6 +18,11 @@ class UserInfoFragment() : BaseFragment<FragmentUserInfoBinding>(FragmentUserInf
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val login = arguments?.getString(USER_LOGIN_ID).toString()
+        initView(login)
+    }
+
+    private fun initView(login: String) {
+        binding.userInfoLogin.text = login
     }
 
     override fun backPressed(): Boolean {
