@@ -1,4 +1,4 @@
-package com.example.popularlibraries.ui.users.view
+package com.example.popularlibraries.ui.users.view.recyclerview
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.popularlibraries.databinding.ItemUsersBinding

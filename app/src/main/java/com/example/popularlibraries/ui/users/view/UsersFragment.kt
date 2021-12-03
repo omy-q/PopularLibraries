@@ -8,6 +8,7 @@ import com.example.popularlibraries.databinding.FragmentUsersBinding
 import com.example.popularlibraries.model.UsersModelImplementation
 import com.example.popularlibraries.ui.base.BaseFragment
 import com.example.popularlibraries.ui.users.presenter.UsersPresenter
+import com.example.popularlibraries.ui.users.view.recyclerview.UserAdapter
 import moxy.ktx.moxyPresenter
 
 class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::inflate), UsersView {
@@ -37,7 +38,6 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             usersList.adapter = adapter
         }
-
     }
 
     override fun updateUsers() {

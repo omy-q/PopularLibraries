@@ -1,12 +1,12 @@
-package com.example.popularlibraries.ui.users.view
+package com.example.popularlibraries.ui.users.view.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.popularlibraries.databinding.ItemUsersBinding
-import com.example.popularlibraries.ui.users.presenter.UsersPresenter
+import com.example.popularlibraries.ui.users.presenter.UserListPresenter
 
-class UserAdapter(private val presenter: UsersPresenter.UserListPresenter) :
+class UserAdapter(private val presenter: UserListPresenter) :
     RecyclerView.Adapter<UserHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {

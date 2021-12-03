@@ -1,10 +1,7 @@
 package com.example.popularlibraries.ui.users.presenter
 
-import com.example.popularlibraries.data.User
 import com.example.popularlibraries.model.UsersModel
 import com.example.popularlibraries.navigation.Screens.userInfo
-import com.example.popularlibraries.ui.base.ListPresenter
-import com.example.popularlibraries.ui.users.view.UserItemView
 import com.example.popularlibraries.ui.users.view.UsersView
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
@@ -28,15 +25,8 @@ class UsersPresenter(
         viewState.updateUsers()
     }
 
-    class UserListPresenter: ListPresenter<UserItemView> {
-        val users = mutableListOf<User>()
-        override var itemClickListener: (pos: Int) -> Unit = {}
-
-        override fun getCount() = users.size
-
-        override fun bindView(view: UserItemView) {
-            val user = users[view.pos]
-            view.setLogin(user.login)
-        }
+    fun backPressed():Boolean{
+        router.exit()
+        return true
     }
 }
