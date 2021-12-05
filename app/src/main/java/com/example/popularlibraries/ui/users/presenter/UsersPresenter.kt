@@ -13,9 +13,8 @@ import io.reactivex.rxjava3.disposables.Disposable
 class UsersPresenter(
     router: Router,
     private val model: UsersModel
-): BasePresenter<UsersView>(router) {
+) : BasePresenter<UsersView>(router) {
 
-    val usersListPresenter = UserListPresenter()
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         loadData()

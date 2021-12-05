@@ -18,7 +18,7 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
     }
 
     private val adapter by lazy {
-        UserAdapter(presenter.usersListPresenter)
+        UserAdapter(presenter::onItemClicked)
     }
 
 
