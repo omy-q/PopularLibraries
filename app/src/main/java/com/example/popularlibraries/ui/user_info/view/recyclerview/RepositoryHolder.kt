@@ -10,7 +10,7 @@ class RepositoryHolder(
 ) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(repo: Repository) {
-        binding.repBtnInfo.setOnClickListener { itemClickListener }
+        binding.repBtnInfo.setOnClickListener { itemClickListener(repo) }
         binding.repName.text = repo.name
         if (!repo.description.isNullOrEmpty()) {
             binding.repDescription.text = repo.description
