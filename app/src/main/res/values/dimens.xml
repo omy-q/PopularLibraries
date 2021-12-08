@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="user_item_height">50dp</dimen>
+    <dimen name="user_item_height">150dp</dimen>
+    <dimen name="users_item_image_height">100dp</dimen>
+    <dimen name="user_item_login_size">20sp</dimen>
+    <dimen name="user_item_html_size">16sp</dimen>
 </resources>
