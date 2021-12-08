@@ -19,7 +19,6 @@ class UserHolder(
             error(R.drawable.error_image_load)
         }
         binding.userLogin.text = user.login
-        binding.userHtml.text = user.htmlUrl
     }
 
 }
