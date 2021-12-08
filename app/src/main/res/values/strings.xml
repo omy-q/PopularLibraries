@@ -2,4 +2,7 @@
     <string name="app_name">PopularLibraries</string>
     <string name="item_rep_btn_text">Show info</string>
     <string name="item_rep_description_is_missing">Description is missing</string>
+    <string name="repo_info_forks_text">Forks:</string>
+    <string name="repo_info_watchers_text">"Watchers: "</string>
+    <string name="repo_info_count_text">0</string>
 </resources>
