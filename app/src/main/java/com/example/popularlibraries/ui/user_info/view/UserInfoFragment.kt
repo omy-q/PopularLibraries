@@ -2,6 +2,7 @@ package com.example.popularlibraries.ui.user_info.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -51,6 +52,16 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
 
     override fun updateRepositories(reps: List<Repository>) {
         adapter.submitList(reps)
+    }
+
+    override fun hideLoading() {
+        binding.userRepositories.isVisible = true
+        binding.loading.isVisible = false
+    }
+
+    override fun showLoading() {
+        binding.userRepositories.isVisible = false
+        binding.loading.isVisible = true
     }
 
     override fun backPressed() = presenter.backPressed()

@@ -24,9 +24,14 @@ class UserInfoPresenter(
         model.getUserRepositories(url)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe{
+                viewState.showLoading()
+            }
             .subscribe({reps ->
-                       viewState.updateRepositories(reps)
+                viewState.updateRepositories(reps)
+                viewState.hideLoading()
             }, {
+                viewState.hideLoading()
                 Log.d("reps", "Error: ${it.stackTrace}")
             })
     }

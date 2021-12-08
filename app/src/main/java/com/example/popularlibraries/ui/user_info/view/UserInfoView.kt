@@ -10,4 +10,8 @@ interface UserInfoView : MvpView {
     fun setData(user: User)
     @AddToEndSingle
     fun updateRepositories(reps: List<Repository>)
+    @AddToEndSingle
+    fun hideLoading()
+    @AddToEndSingle
+    fun showLoading()
 }
