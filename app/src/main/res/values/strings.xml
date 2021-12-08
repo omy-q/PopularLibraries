@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PopularLibraries</string>
     <string name="item_rep_btn_text">Show info</string>
+    <string name="item_rep_description_is_missing">Description is missing</string>
 </resources>

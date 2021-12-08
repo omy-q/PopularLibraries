@@ -11,8 +11,7 @@ object RepositoryDiffUtilCallback : DiffUtil.ItemCallback<Repository>() {
     override fun areContentsTheSame(oldItem: Repository, newItem: Repository): Boolean {
         return oldItem.name == newItem.name &&
                 oldItem.forksCount == newItem.forksCount &&
-                oldItem.watchersCount == newItem.watchersCount &&
-                oldItem.createDate == newItem.createDate
+                oldItem.watchersCount == newItem.watchersCount
     }
 
 }
