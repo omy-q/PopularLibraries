@@ -30,6 +30,6 @@ class UsersPresenter(
     }
 
     fun onItemClicked(user: User) {
-        router.navigateTo(userInfo(user.login))
+        router.navigateTo(userInfo(user))
     }
 }
