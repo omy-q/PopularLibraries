@@ -21,16 +21,6 @@
                 android:layout_margin="8dp"
                 android:textSize="@dimen/user_item_login_size"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/userHtml"
-                app:layout_constraintStart_toEndOf="@id/userAvatar"/>
-
-            <TextView
-                android:id="@+id/userHtml"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:textSize="@dimen/user_item_html_size"
-                app:layout_constraintTop_toBottomOf="@id/userLogin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/userAvatar"/>
 

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PopularLibraries</string>
+    <string name="item_rep_btn_text">Show info</string>
 </resources>
