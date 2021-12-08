@@ -4,9 +4,11 @@ import android.util.Log
 import com.example.popularlibraries.data.Repository
 import com.example.popularlibraries.data.User
 import com.example.popularlibraries.model.UsersModel
+import com.example.popularlibraries.navigation.Screens.repoInfo
 import com.example.popularlibraries.ui.base.BasePresenter
 import com.example.popularlibraries.ui.user_info.view.UserInfoView
 import com.github.terrakok.cicerone.Router
+import com.github.terrakok.cicerone.Screen
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -37,7 +39,7 @@ class UserInfoPresenter(
     }
 
     fun onItemClicked(repo: Repository){
-        Log.d("reps", "repo clicked: ${repo}")
+        router.navigateTo(repoInfo(repo))
     }
 
 }
