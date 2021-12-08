@@ -1,8 +1,11 @@
 package com.example.popularlibraries.data
 
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Repository(
     @Expose
     val id: Int,
@@ -17,4 +20,4 @@ data class Repository(
     @Expose
     @SerializedName("watchers")
     val watchersCount: Int
-)
+): Parcelable
