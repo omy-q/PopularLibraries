@@ -9,7 +9,8 @@ import com.example.popularlibraries.ui.base.BaseFragment
 import com.example.popularlibraries.ui.repo_info.presenter.RepoInfoPresenter
 import moxy.ktx.moxyPresenter
 
-class RepoInfoFragment() : BaseFragment<FragmentRepoInfoBinding>(FragmentRepoInfoBinding::inflate) {
+class RepoInfoFragment() : BaseFragment<FragmentRepoInfoBinding>(FragmentRepoInfoBinding::inflate),
+    RepoInfoView {
 
     private val presenter by moxyPresenter {
         RepoInfoPresenter(App.instance.router)
@@ -29,10 +30,10 @@ class RepoInfoFragment() : BaseFragment<FragmentRepoInfoBinding>(FragmentRepoInf
 
     override fun backPressed() = presenter.backPressed()
 
-    companion object{
+    companion object {
         private const val REPO_ID = "repo_id"
-        fun newInstance(repository: Repository): RepoInfoFragment{
-            val args =  Bundle()
+        fun newInstance(repository: Repository): RepoInfoFragment {
+            val args = Bundle()
             args.putParcelable(REPO_ID, repository)
             val fragment = RepoInfoFragment()
             fragment.arguments = args
