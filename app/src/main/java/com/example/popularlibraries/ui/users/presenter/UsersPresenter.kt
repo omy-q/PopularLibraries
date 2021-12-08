@@ -25,12 +25,13 @@ class UsersPresenter(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
-                Log.d("Remote", "doOnSubscribe")
+                viewState.showLoading()
             }
             .subscribe({ users ->
                 viewState.updateUsers(users)
+                viewState.hideLoading()
             }, {
-                Log.d("Remote", "doOnError")
+                viewState.hideLoading()
             })
     }
 

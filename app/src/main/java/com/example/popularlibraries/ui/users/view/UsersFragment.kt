@@ -2,6 +2,7 @@ package com.example.popularlibraries.ui.users.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.popularlibraries.App
 import com.example.popularlibraries.data.User
@@ -41,5 +42,15 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
 
     override fun updateUsers(users: List<User>) {
         adapter.submitList(users)
+    }
+
+    override fun hideLoading() {
+        binding.usersList.isVisible = true
+        binding.loading.isVisible = false
+    }
+
+    override fun showLoading() {
+        binding.usersList.isVisible = false
+        binding.loading.isVisible = true
     }
 }

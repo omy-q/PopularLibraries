@@ -2,7 +2,10 @@ package com.example.popularlibraries.ui.user_info.view
 
 import android.os.Bundle
 import android.view.View
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.popularlibraries.App
+import com.example.popularlibraries.R
 import com.example.popularlibraries.data.User
 import com.example.popularlibraries.databinding.FragmentUserInfoBinding
 import com.example.popularlibraries.ui.base.BaseFragment
@@ -23,7 +26,12 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
     }
 
     private fun initView(user : User) {
+        binding.userInfoAvatar.load(user.avatarUrl){
+            placeholder(R.drawable.progress_animation)
+            error(R.drawable.error_image_load)
+        }
         binding.userInfoLogin.text = user.login
+        binding.userInfoHtml.text = user.htmlUrl
     }
 
     override fun backPressed() = presenter.backPressed()
