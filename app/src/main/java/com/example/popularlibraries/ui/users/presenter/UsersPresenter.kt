@@ -1,5 +1,7 @@
 package com.example.popularlibraries.ui.users.presenter
 
+import android.util.Log
+import com.example.popularlibraries.data.User
 import com.example.popularlibraries.model.UsersModel
 import com.example.popularlibraries.navigation.Screens.userInfo
 import com.example.popularlibraries.ui.base.BasePresenter
@@ -9,19 +11,25 @@ import com.github.terrakok.cicerone.Router
 class UsersPresenter(
     router: Router,
     private val model: UsersModel
-): BasePresenter<UsersView>(router) {
+) : BasePresenter<UsersView>(router) {
 
-    val usersListPresenter = UserListPresenter()
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         loadData()
-        usersListPresenter.itemClickListener = { pos ->
-            router.navigateTo(userInfo(usersListPresenter.users[pos].login))
-        }
     }
 
-    private fun loadData(){
-        usersListPresenter.users.addAll(model.getUsers())
-        viewState.updateUsers()
+    private fun loadData() {
+        model.getUsers()
+            .doOnNext { users ->
+                viewState.updateUsers(users)
+            }
+            .doOnError { e ->
+                Log.e("RxJava", e.stackTraceToString())
+            }
+            .subscribe()
+    }
+
+    fun onItemClicked(user: User) {
+        router.navigateTo(userInfo(user.login))
     }
 }

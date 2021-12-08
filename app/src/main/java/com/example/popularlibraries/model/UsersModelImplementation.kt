@@ -1,6 +1,7 @@
 package com.example.popularlibraries.model
 
 import com.example.popularlibraries.data.User
+import io.reactivex.rxjava3.core.Observable
 
 class UsersModelImplementation: UsersModel {
     private var users = listOf(
@@ -11,7 +12,7 @@ class UsersModelImplementation: UsersModel {
         User("login5"),
         User("login6")
     )
-    override fun getUsers(): List<User> {
-        return users
+    override fun getUsers(): Observable<List<User>> {
+        return Observable.just(users)
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.popularlibraries.App
+import com.example.popularlibraries.data.User
 import com.example.popularlibraries.databinding.FragmentUsersBinding
 import com.example.popularlibraries.model.UsersModelImplementation
 import com.example.popularlibraries.ui.base.BaseFragment
@@ -18,7 +19,7 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
     }
 
     private val adapter by lazy {
-        UserAdapter(presenter.usersListPresenter)
+        UserAdapter(presenter::onItemClicked)
     }
 
 
@@ -37,7 +38,7 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
         }
     }
 
-    override fun updateUsers() {
-        adapter.notifyDataSetChanged()
+    override fun updateUsers(users: List<User>) {
+        adapter.submitList(users)
     }
 }
