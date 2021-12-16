@@ -1,18 +1,19 @@
 package com.example.popularlibraries.model
 
+import com.example.popularlibraries.data.Repository
 import com.example.popularlibraries.data.User
-import io.reactivex.rxjava3.core.Observable
+import com.example.popularlibraries.remote.RetrofitService
+import io.reactivex.rxjava3.core.Single
 
-class UsersModelImplementation: UsersModel {
-    private var users = listOf(
-        User("login1"),
-        User("login2"),
-        User("login3"),
-        User("login4"),
-        User("login5"),
-        User("login6")
-    )
-    override fun getUsers(): Observable<List<User>> {
-        return Observable.just(users)
+class UsersModelImplementation(
+    private val remoteService: RetrofitService
+): UsersModel {
+
+    override fun getUsers(): Single<List<User>> {
+        return remoteService.getUsers()
+    }
+
+    override fun getUserRepositories(url: String): Single<List<Repository>> {
+        return remoteService.getRepositories(url)
     }
 }

@@ -7,4 +7,8 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 interface UsersView: MvpView {
     @AddToEndSingle
     fun updateUsers(users: List<User>)
+    @AddToEndSingle
+    fun hideLoading()
+    @AddToEndSingle
+    fun showLoading()
 }
