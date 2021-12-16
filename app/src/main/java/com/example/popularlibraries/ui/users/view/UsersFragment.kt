@@ -9,6 +9,7 @@ import com.example.popularlibraries.data.User
 import com.example.popularlibraries.databinding.FragmentUsersBinding
 import com.example.popularlibraries.model.UsersModelImplementation
 import com.example.popularlibraries.remote.ApiHolder
+import com.example.popularlibraries.remote.connectivity.NetworkStatus
 import com.example.popularlibraries.room.DataBase
 import com.example.popularlibraries.ui.base.BaseFragment
 import com.example.popularlibraries.ui.users.presenter.UsersPresenter
@@ -19,11 +20,20 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
 
     private val presenter by moxyPresenter {
         UsersPresenter(App.instance.router,
-            UsersModelImplementation(ApiHolder.retrofitService, db = DataBase.instance))
+            UsersModelImplementation(
+                status = status,
+                remoteService = ApiHolder.retrofitService,
+                db = DataBase.instance
+            )
+        )
     }
 
     private val adapter by lazy {
         UserAdapter(presenter::onItemClicked)
+    }
+
+    private val status by lazy {
+        NetworkStatus(requireContext().applicationContext)
     }
 
 

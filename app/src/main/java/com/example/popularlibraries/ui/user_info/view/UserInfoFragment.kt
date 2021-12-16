@@ -14,6 +14,7 @@ import com.example.popularlibraries.databinding.FragmentUserInfoBinding
 import com.example.popularlibraries.model.ReposModelImplementation
 import com.example.popularlibraries.model.UsersModelImplementation
 import com.example.popularlibraries.remote.ApiHolder
+import com.example.popularlibraries.remote.connectivity.NetworkStatus
 import com.example.popularlibraries.room.DataBase
 import com.example.popularlibraries.ui.base.BaseFragment
 import com.example.popularlibraries.ui.user_info.presenter.UserInfoPresenter
@@ -24,8 +25,16 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
     UserInfoView {
 
     private val presenter by moxyPresenter {
-        UserInfoPresenter(App.instance.router,
-            ReposModelImplementation(ApiHolder.retrofitService, db = DataBase.instance))
+        UserInfoPresenter(
+            App.instance.router,
+            ReposModelImplementation(
+                status = status,
+                remoteService = ApiHolder.retrofitService,
+                db = DataBase.instance)
+        )
+    }
+    private val status by lazy {
+        NetworkStatus(requireContext().applicationContext)
     }
 
     private val adapter by lazy {
@@ -34,7 +43,7 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val user = arguments?.let { it.getParcelable<User>(USER_ID)}
+        val user = arguments?.let { it.getParcelable<User>(USER_ID) }
         user?.let { presenter.getData(it) }
         initView()
     }
@@ -45,7 +54,7 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
     }
 
     override fun setData(user: User) {
-        binding.userInfoAvatar.load(user.avatarUrl){
+        binding.userInfoAvatar.load(user.avatarUrl) {
             transformations(CircleCropTransformation())
             placeholder(R.drawable.progress_animation)
             error(R.drawable.error_image_load)
@@ -69,9 +78,9 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
 
     override fun backPressed() = presenter.backPressed()
 
-    companion object{
+    companion object {
         private const val USER_ID = "user_id"
-        fun newInstance(user: User): UserInfoFragment{
+        fun newInstance(user: User): UserInfoFragment {
             val args = Bundle()
             args.putParcelable(USER_ID, user)
             val fragment = UserInfoFragment()
