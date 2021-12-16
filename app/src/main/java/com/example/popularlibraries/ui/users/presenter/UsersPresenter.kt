@@ -1,6 +1,5 @@
 package com.example.popularlibraries.ui.users.presenter
 
-import android.util.Log
 import com.example.popularlibraries.data.User
 import com.example.popularlibraries.model.UsersModel
 import com.example.popularlibraries.navigation.Screens.userInfo

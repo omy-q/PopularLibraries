@@ -11,8 +11,10 @@ import com.example.popularlibraries.R
 import com.example.popularlibraries.data.Repository
 import com.example.popularlibraries.data.User
 import com.example.popularlibraries.databinding.FragmentUserInfoBinding
+import com.example.popularlibraries.model.ReposModelImplementation
 import com.example.popularlibraries.model.UsersModelImplementation
 import com.example.popularlibraries.remote.ApiHolder
+import com.example.popularlibraries.room.DataBase
 import com.example.popularlibraries.ui.base.BaseFragment
 import com.example.popularlibraries.ui.user_info.presenter.UserInfoPresenter
 import com.example.popularlibraries.ui.user_info.view.recyclerview.RepositoryAdapter
@@ -22,7 +24,8 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
     UserInfoView {
 
     private val presenter by moxyPresenter {
-        UserInfoPresenter(App.instance.router, UsersModelImplementation(ApiHolder.retrofitService))
+        UserInfoPresenter(App.instance.router,
+            ReposModelImplementation(ApiHolder.retrofitService, db = DataBase.instance))
     }
 
     private val adapter by lazy {
