@@ -19,5 +19,13 @@ data class Repository(
     val forksCount: Int,
     @Expose
     @SerializedName("watchers")
-    val watchersCount: Int
+    val watchersCount: Int,
+    @Expose
+    val owner: RepoOwner
 ): Parcelable
+
+@Parcelize
+data class RepoOwner(
+    @Expose
+    val id: Int,
+):Parcelable

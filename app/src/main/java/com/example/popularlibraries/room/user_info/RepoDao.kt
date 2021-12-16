@@ -17,5 +17,5 @@ interface RepoDao {
     fun getAll(): List<RepoEntity>
 
     @Query("SELECT * FROM RepoEntity WHERE userId = :userId")
-    fun getByUserId(userId: String): List<RepoEntity>
+    fun getByUserId(userId: Int): List<RepoEntity>
 }

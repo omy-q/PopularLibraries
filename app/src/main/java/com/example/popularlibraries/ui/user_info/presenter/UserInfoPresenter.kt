@@ -20,11 +20,11 @@ class UserInfoPresenter(
 
     fun getData(user: User){
         viewState.setData(user)
-        loadData(user.reposUrl)
+        loadData(user)
     }
 
-    private fun loadData(url: String) {
-        model.getUserRepositories(url)
+    private fun loadData(user: User) {
+        model.getUserRepositories(user)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe{
