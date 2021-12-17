@@ -11,6 +11,7 @@ import com.example.popularlibraries.model.UsersModelImplementation
 import com.example.popularlibraries.remote.ApiHolder
 import com.example.popularlibraries.remote.connectivity.NetworkStatus
 import com.example.popularlibraries.room.DataBase
+import com.example.popularlibraries.room.model.RoomUserModelImplementation
 import com.example.popularlibraries.ui.base.BaseFragment
 import com.example.popularlibraries.ui.users.presenter.UsersPresenter
 import com.example.popularlibraries.ui.users.view.recyclerview.UserAdapter
@@ -23,7 +24,7 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
             UsersModelImplementation(
                 status = status,
                 remoteService = ApiHolder.retrofitService,
-                db = DataBase.instance
+                roomModel = RoomUserModelImplementation(DataBase.instance)
             )
         )
     }
