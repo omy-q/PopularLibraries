@@ -1,14 +1,10 @@
 package com.example.popularlibraries.model
 
-import com.example.popularlibraries.data.RepoOwner
 import com.example.popularlibraries.data.Repository
 import com.example.popularlibraries.data.User
 import com.example.popularlibraries.remote.RetrofitService
 import com.example.popularlibraries.remote.connectivity.NetworkStatus
-import com.example.popularlibraries.room.DataBase
 import com.example.popularlibraries.room.model.RoomRepoModel
-import com.example.popularlibraries.room.user_info.RepoEntity
-import com.example.popularlibraries.room.users.UserEntity
 import io.reactivex.rxjava3.core.Single
 
 class ReposModelImplementation(
