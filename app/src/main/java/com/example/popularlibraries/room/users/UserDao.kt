@@ -21,6 +21,6 @@ interface UserDao {
     fun getAll(): List<UserEntity>
 
     @Query("SELECT * FROM UserEntity WHERE login = :login LIMIT 1")
-    fun getByLogin(login: String): RepoEntity?
+    fun getByLogin(login: String): UserEntity?
 
 }
