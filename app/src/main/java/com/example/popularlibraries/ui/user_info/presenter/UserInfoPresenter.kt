@@ -3,6 +3,7 @@ package com.example.popularlibraries.ui.user_info.presenter
 import android.util.Log
 import com.example.popularlibraries.data.Repository
 import com.example.popularlibraries.data.User
+import com.example.popularlibraries.model.ReposModel
 import com.example.popularlibraries.model.UsersModel
 import com.example.popularlibraries.navigation.Screens.repoInfo
 import com.example.popularlibraries.ui.base.BasePresenter
@@ -14,16 +15,16 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class UserInfoPresenter(
     router: Router,
-    private val model: UsersModel
+    private val model: ReposModel
 ) : BasePresenter<UserInfoView>(router) {
 
     fun getData(user: User){
         viewState.setData(user)
-        loadData(user.reposUrl)
+        loadData(user)
     }
 
-    private fun loadData(url: String) {
-        model.getUserRepositories(url)
+    private fun loadData(user: User) {
+        model.getUserRepositories(user)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe{
