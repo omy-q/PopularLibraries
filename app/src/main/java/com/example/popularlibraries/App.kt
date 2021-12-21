@@ -2,6 +2,7 @@ package com.example.popularlibraries
 
 import android.app.Application
 import com.example.popularlibraries.di.AppComponent
+import com.example.popularlibraries.di.DaggerAppComponent
 import com.example.popularlibraries.di.modules.ContextModule
 
 class App: Application() {

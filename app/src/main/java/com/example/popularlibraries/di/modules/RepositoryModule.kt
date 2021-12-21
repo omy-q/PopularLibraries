@@ -8,8 +8,10 @@ import com.example.popularlibraries.remote.RetrofitService
 import com.example.popularlibraries.remote.connectivity.NetworkStatus
 import com.example.popularlibraries.room.model.RoomRepoModel
 import com.example.popularlibraries.room.model.RoomUserModel
+import dagger.Module
 import dagger.Provides
 
+@Module
 class RepositoryModule {
     @Provides
     fun usersModel(

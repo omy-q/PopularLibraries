@@ -3,10 +3,12 @@ package com.example.popularlibraries.di.modules
 import android.content.Context
 import androidx.room.Room
 import com.example.popularlibraries.room.DataBase
+import dagger.Module
 import dagger.Provides
 
 private const val DB_NAME = "database.db"
 
+@Module
 class CacheModule {
 
     @Provides
