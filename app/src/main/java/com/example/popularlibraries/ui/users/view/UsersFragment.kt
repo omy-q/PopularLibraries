@@ -20,7 +20,7 @@ import moxy.ktx.moxyPresenter
 class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::inflate), UsersView {
 
     private val presenter by moxyPresenter {
-        UsersPresenter(App.instance.router,
+        UsersPresenter(
             UsersModelImplementation(
                 status = status,
                 remoteService = ApiHolder.retrofitService,

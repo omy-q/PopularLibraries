@@ -27,7 +27,6 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
 
     private val presenter by moxyPresenter {
         UserInfoPresenter(
-            App.instance.router,
             ReposModelImplementation(
                 status = status,
                 remoteService = ApiHolder.retrofitService,
