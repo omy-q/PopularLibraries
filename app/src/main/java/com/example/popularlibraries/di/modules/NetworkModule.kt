@@ -13,6 +13,7 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import javax.inject.Named
+import javax.inject.Singleton
 
 private const val BASE_URL = "base_url"
 
@@ -20,17 +21,20 @@ private const val BASE_URL = "base_url"
 class NetworkModule {
 
     @Provides
+    @Singleton
     @Named(BASE_URL)
     fun baseUrl(): String {
         return "https://api.github.com"
     }
 
     @Provides
+    @Singleton
     fun retrofitService(retrofit: Retrofit): RetrofitService {
         return retrofit.create()
     }
 
     @Provides
+    @Singleton
     fun getGson(): Gson {
         return GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
@@ -51,6 +55,7 @@ class NetworkModule {
     }
 
     @Provides
+    @Singleton
     fun networkStatus(context: Context): NetworkStatus {
         return NetworkStatus(context)
     }

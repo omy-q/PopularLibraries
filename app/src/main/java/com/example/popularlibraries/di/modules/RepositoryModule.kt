@@ -10,10 +10,12 @@ import com.example.popularlibraries.room.model.RoomRepoModel
 import com.example.popularlibraries.room.model.RoomUserModel
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 class RepositoryModule {
     @Provides
+    @Singleton
     fun usersModel(
         status: NetworkStatus,
         remoteService: RetrofitService,
@@ -23,6 +25,7 @@ class RepositoryModule {
     }
 
     @Provides
+    @Singleton
     fun reposModel(
         status: NetworkStatus,
         remoteService: RetrofitService,
