@@ -8,10 +8,12 @@ import com.example.popularlibraries.ui.base.BasePresenter
 import com.example.popularlibraries.ui.user_info.view.UserInfoView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class UserInfoPresenter(
-    private val model: ReposModel
-) : BasePresenter<UserInfoView>() {
+class UserInfoPresenter: BasePresenter<UserInfoView>() {
+
+    @Inject
+    lateinit var model:ReposModel
 
     fun getData(user: User){
         viewState.setData(user)

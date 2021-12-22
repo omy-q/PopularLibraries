@@ -13,7 +13,9 @@ class RepoInfoFragment() : BaseFragment<FragmentRepoInfoBinding>(FragmentRepoInf
     RepoInfoView {
 
     private val presenter by moxyPresenter {
-        RepoInfoPresenter()
+        RepoInfoPresenter().apply {
+            App.instance.appComponent.inject(this)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

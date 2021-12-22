@@ -6,10 +6,12 @@ import com.example.popularlibraries.ui.base.BasePresenter
 import com.example.popularlibraries.ui.users.view.UsersView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class UsersPresenter(
-    private val model: UsersModel
-) : BasePresenter<UsersView>() {
+class UsersPresenter: BasePresenter<UsersView>() {
+
+    @Inject
+    lateinit var model: UsersModel
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

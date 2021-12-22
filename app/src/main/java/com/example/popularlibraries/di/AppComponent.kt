@@ -6,7 +6,6 @@ import com.example.popularlibraries.ui.main.view.MainActivity
 import com.example.popularlibraries.ui.repo_info.presenter.RepoInfoPresenter
 import com.example.popularlibraries.ui.user_info.presenter.UserInfoPresenter
 import com.example.popularlibraries.ui.users.presenter.UsersPresenter
-import com.example.popularlibraries.ui.users.view.UsersFragment
 import dagger.Component
 import javax.inject.Singleton
 

@@ -11,12 +11,6 @@ import com.example.popularlibraries.R
 import com.example.popularlibraries.data.Repository
 import com.example.popularlibraries.data.User
 import com.example.popularlibraries.databinding.FragmentUserInfoBinding
-import com.example.popularlibraries.model.ReposModelImplementation
-import com.example.popularlibraries.model.UsersModelImplementation
-import com.example.popularlibraries.remote.ApiHolder
-import com.example.popularlibraries.remote.connectivity.NetworkStatus
-import com.example.popularlibraries.room.DataBase
-import com.example.popularlibraries.room.model.RoomRepoModelImplementation
 import com.example.popularlibraries.ui.base.BaseFragment
 import com.example.popularlibraries.ui.user_info.presenter.UserInfoPresenter
 import com.example.popularlibraries.ui.user_info.view.recyclerview.RepositoryAdapter
@@ -26,16 +20,9 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
     UserInfoView {
 
     private val presenter by moxyPresenter {
-        UserInfoPresenter(
-            ReposModelImplementation(
-                status = status,
-                remoteService = ApiHolder.retrofitService,
-                roomModel = RoomRepoModelImplementation(DataBase.instance)
-            )
-        )
-    }
-    private val status by lazy {
-        NetworkStatus(requireContext().applicationContext)
+        UserInfoPresenter().apply {
+            App.instance.appComponent.inject(this)
+        }
     }
 
     private val adapter by lazy {
