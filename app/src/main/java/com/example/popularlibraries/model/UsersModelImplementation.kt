@@ -5,8 +5,9 @@ import com.example.popularlibraries.remote.RetrofitService
 import com.example.popularlibraries.remote.connectivity.NetworkStatus
 import com.example.popularlibraries.room.model.RoomUserModel
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class UsersModelImplementation(
+class UsersModelImplementation @Inject constructor(
     private val status: NetworkStatus,
     private val remoteService: RetrofitService,
     private val roomModel: RoomUserModel
