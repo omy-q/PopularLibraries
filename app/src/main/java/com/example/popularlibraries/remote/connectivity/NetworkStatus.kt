@@ -5,17 +5,12 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkRequest
 import androidx.core.content.getSystemService
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 
 class NetworkStatus(context: Context) {
 
     private val networkSubject: BehaviorSubject<Boolean> = BehaviorSubject.create()
     private val connectivityManager = context.getSystemService<ConnectivityManager>()
-
-    fun getNetworkSubject(): Observable<Boolean> {
-        return networkSubject
-    }
 
     fun isOnline() = networkSubject.value ?: false
 

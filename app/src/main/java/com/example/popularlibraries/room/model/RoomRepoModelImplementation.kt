@@ -14,7 +14,7 @@ class RoomRepoModelImplementation(
             RepoEntity(
                 repo.id,
                 repo.name,
-                repo.description,
+                repo.description.orEmpty(),
                 repo.forksCount,
                 repo.watchersCount,
                 userId
