@@ -13,7 +13,7 @@ data class Repository(
     val name: String,
     @Expose
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @Expose
     @SerializedName("forks")
     val forksCount: Int,
