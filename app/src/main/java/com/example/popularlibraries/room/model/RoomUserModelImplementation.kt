@@ -4,8 +4,9 @@ import com.example.popularlibraries.data.User
 import com.example.popularlibraries.room.DataBase
 import com.example.popularlibraries.room.users.UserEntity
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class RoomUserModelImplementation(
+class RoomUserModelImplementation @Inject constructor(
     private val db: DataBase
 ) : RoomUserModel {
     override fun saveUsers(users: List<User>): Single<List<User>> {

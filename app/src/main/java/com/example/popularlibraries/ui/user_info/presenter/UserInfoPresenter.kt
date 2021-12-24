@@ -3,6 +3,7 @@ package com.example.popularlibraries.ui.user_info.presenter
 import android.util.Log
 import com.example.popularlibraries.data.Repository
 import com.example.popularlibraries.data.User
+import com.example.popularlibraries.di.scope.containers.ReposScopeContainer
 import com.example.popularlibraries.model.ReposModel
 import com.example.popularlibraries.ui.base.BasePresenter
 import com.example.popularlibraries.ui.user_info.view.UserInfoView
@@ -11,7 +12,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class UserInfoPresenter @Inject constructor(
-    private val model: ReposModel
+    private val model: ReposModel,
+    private val reposScopeContainer: ReposScopeContainer
 ): BasePresenter<UserInfoView>() {
 
     fun getData(user: User){
@@ -37,6 +39,11 @@ class UserInfoPresenter @Inject constructor(
 
     fun onItemClicked(repo: Repository){
         router.navigateTo(screen.repoInfo(repo))
+    }
+
+    override fun onDestroy() {
+        reposScopeContainer.destroyReposSubcomponent()
+        super.onDestroy()
     }
 
 }

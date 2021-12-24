@@ -9,21 +9,17 @@ import com.example.popularlibraries.ui.users.presenter.UsersPresenter
 import dagger.Component
 import javax.inject.Singleton
 
+@Singleton
 @Component(
     modules = [
-        CacheModule::class,
+        DbModule::class,
         CiceroneModule::class,
-        RepositoryModule::class,
         NetworkModule::class,
-        ContextModule::class
+        AppModule::class
     ]
 )
-
-@Singleton
 interface AppComponent {
     fun inject(mainActivity: MainActivity)
     fun mainPresenter(): MainPresenter
-    fun usersPresenter(): UsersPresenter
-    fun userInfoPresenter(): UserInfoPresenter
-    fun repoInfoPresenter(): RepoInfoPresenter
+    fun usersSubComponent(): UsersSubcomponent
 }

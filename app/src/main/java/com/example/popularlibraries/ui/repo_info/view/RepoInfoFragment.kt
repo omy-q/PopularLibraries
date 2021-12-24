@@ -8,11 +8,12 @@ import com.example.popularlibraries.databinding.FragmentRepoInfoBinding
 import com.example.popularlibraries.ui.base.BaseFragment
 import moxy.ktx.moxyPresenter
 
-class RepoInfoFragment() : BaseFragment<FragmentRepoInfoBinding>(FragmentRepoInfoBinding::inflate),
+class RepoInfoFragment: BaseFragment<FragmentRepoInfoBinding>(FragmentRepoInfoBinding::inflate),
     RepoInfoView {
 
     private val presenter by moxyPresenter {
-        App.instance.appComponent.repoInfoPresenter()
+        App.instance.initRepoInfoSubcomponent()
+        App.instance.repoInfoSubcomponent?.repoInfoPresenter()!!
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

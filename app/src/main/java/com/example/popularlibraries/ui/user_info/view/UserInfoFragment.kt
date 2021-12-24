@@ -19,7 +19,8 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
     UserInfoView {
 
     private val presenter by moxyPresenter {
-        App.instance.appComponent.userInfoPresenter()
+        App.instance.initReposSubcomponent()
+        App.instance.reposSubcomponent?.userInfoPresenter()!!
     }
 
     private val adapter by lazy {

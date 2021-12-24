@@ -14,7 +14,8 @@ import moxy.ktx.moxyPresenter
 class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::inflate), UsersView {
 
     private val presenter by moxyPresenter {
-        App.instance.appComponent.usersPresenter()
+        App.instance.initUsersSubcomponent()
+        App.instance.usersSubcomponent?.usersPresenter()!!
     }
 
     private val adapter by lazy {

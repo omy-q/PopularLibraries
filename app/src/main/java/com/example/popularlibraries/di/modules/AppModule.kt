@@ -1,16 +1,23 @@
 package com.example.popularlibraries.di.modules
 
-import android.app.Application
 import android.content.Context
+import com.example.popularlibraries.App
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class ContextModule(private val app: Application) {
-    @Provides
+class AppModule(private val app: App) {
+
     @Singleton
-    fun app(): Context{
+    @Provides
+    fun context(): Context {
+        return app
+    }
+
+    @Singleton
+    @Provides
+    fun app(): App {
         return app
     }
 }

@@ -43,6 +43,7 @@ class NetworkModule {
     }
 
     @Provides
+    @Singleton
     fun getRetrofit(
         @Named(BASE_URL) baseUrl: String,
         gson: Gson
