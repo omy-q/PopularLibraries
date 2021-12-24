@@ -8,10 +8,9 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-class UsersPresenter: BasePresenter<UsersView>() {
-
-    @Inject
-    lateinit var model: UsersModel
+class UsersPresenter @Inject constructor(
+    private val model: UsersModel
+): BasePresenter<UsersView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

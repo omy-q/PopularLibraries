@@ -10,10 +10,9 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-class UserInfoPresenter: BasePresenter<UserInfoView>() {
-
-    @Inject
-    lateinit var model:ReposModel
+class UserInfoPresenter @Inject constructor(
+    private val model: ReposModel
+): BasePresenter<UserInfoView>() {
 
     fun getData(user: User){
         viewState.setData(user)

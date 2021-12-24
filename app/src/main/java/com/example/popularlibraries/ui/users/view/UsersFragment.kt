@@ -8,16 +8,13 @@ import com.example.popularlibraries.App
 import com.example.popularlibraries.data.User
 import com.example.popularlibraries.databinding.FragmentUsersBinding
 import com.example.popularlibraries.ui.base.BaseFragment
-import com.example.popularlibraries.ui.users.presenter.UsersPresenter
 import com.example.popularlibraries.ui.users.view.recyclerview.UserAdapter
 import moxy.ktx.moxyPresenter
 
 class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::inflate), UsersView {
 
     private val presenter by moxyPresenter {
-        UsersPresenter().apply {
-            App.instance.appComponent.inject(this)
-        }
+        App.instance.appComponent.usersPresenter()
     }
 
     private val adapter by lazy {

@@ -5,7 +5,6 @@ import com.example.popularlibraries.App
 import com.example.popularlibraries.R
 import com.example.popularlibraries.databinding.ActivityMainBinding
 import com.example.popularlibraries.ui.base.BackButtonListener
-import com.example.popularlibraries.ui.main.presenter.MainPresenter
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
@@ -19,9 +18,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     private lateinit var binding: ActivityMainBinding
     private val navigator = AppNavigator(this, R.id.container)
     private val presenter by moxyPresenter {
-        MainPresenter().apply {
-            App.instance.appComponent.inject(this)
-        }
+        App.instance.appComponent.mainPresenter()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
