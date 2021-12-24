@@ -14,12 +14,7 @@ class ReposModelImplementation(
 ) : ReposModel {
     override fun getUserRepositories(user: User): Single<List<Repository>> {
         return if (status.isOnline()) {
-            remoteService.getRepositories(user.reposUrl).flatMap { repos ->
-                roomModel.saveUserRepos(repos, user.id)
-                Single.fromCallable {
-                    repos
-                }
-            }
+            remoteService.getRepositories(user.reposUrl).flatMap(roomModel::saveUserRepos)
         } else {
             roomModel.getUserRepos(user.id)
         }

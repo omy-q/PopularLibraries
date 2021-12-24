@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.core.Single
 class RoomRepoModelImplementation(
     private val db: DataBase
 ) : RoomRepoModel {
-    override fun saveUserRepos(repos: List<Repository>, userId: Int) {
+    override fun saveUserRepos(repos: List<Repository>): Single<List<Repository>> {
         val roomRepos = repos.map { repo ->
             RepoEntity(
                 repo.id,
@@ -17,15 +17,15 @@ class RoomRepoModelImplementation(
                 repo.description.orEmpty(),
                 repo.forksCount,
                 repo.watchersCount,
-                userId
+                repo.owner.id
             )
         }
-        db.repoDao.insert(roomRepos)
+        return db.repoDao.insert(roomRepos).toSingle { repos }
     }
 
     override fun getUserRepos(userId: Int): Single<List<Repository>> {
-        return Single.fromCallable {
-            db.repoDao.getByUserId(userId).map { roomRepo ->
+        return db.repoDao.getByUserId(userId).map { list ->
+            list.map { roomRepo ->
                 Repository(
                     roomRepo.id,
                     roomRepo.name,

@@ -14,15 +14,9 @@ class UsersModelImplementation(
 
     override fun getUsers(): Single<List<User>> {
         return if (status.isOnline()) {
-            remoteService.getUsers().flatMap { users ->
-                roomModel.saveUsers(users)
-                Single.fromCallable {
-                    users
-                }
-            }
+            remoteService.getUsers().flatMap(roomModel::saveUsers)
         } else {
             roomModel.getUsers()
         }
     }
-
 }
