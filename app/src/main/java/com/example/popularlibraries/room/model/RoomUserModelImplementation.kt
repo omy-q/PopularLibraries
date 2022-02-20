@@ -4,20 +4,21 @@ import com.example.popularlibraries.data.User
 import com.example.popularlibraries.room.DataBase
 import com.example.popularlibraries.room.users.UserEntity
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class RoomUserModelImplementation(
+class RoomUserModelImplementation @Inject constructor(
     private val db: DataBase
 ) : RoomUserModel {
-    override fun saveUsers(users: List<User>) {
+    override fun saveUsers(users: List<User>): Single<List<User>> {
         val roomUsers = users.map { user ->
             UserEntity(user.id, user.login, user.avatarUrl, user.reposUrl)
         }
-        db.userDao.insert(roomUsers)
+        return db.userDao.insert(roomUsers).toSingle { users }
     }
 
     override fun getUsers(): Single<List<User>> {
-        return Single.fromCallable {
-            db.userDao.getAll().map { roomUser ->
+        return db.userDao.getAll().map { listUsers ->
+            listUsers.map { roomUser ->
                 User(roomUser.id, roomUser.login, roomUser.avatarUrl, roomUser.reposUrl)
             }
         }

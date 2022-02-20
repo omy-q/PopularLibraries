@@ -12,7 +12,6 @@ import com.example.popularlibraries.data.Repository
 import com.example.popularlibraries.data.User
 import com.example.popularlibraries.databinding.FragmentUserInfoBinding
 import com.example.popularlibraries.ui.base.BaseFragment
-import com.example.popularlibraries.ui.user_info.presenter.UserInfoPresenter
 import com.example.popularlibraries.ui.user_info.view.recyclerview.RepositoryAdapter
 import moxy.ktx.moxyPresenter
 
@@ -20,9 +19,8 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
     UserInfoView {
 
     private val presenter by moxyPresenter {
-        UserInfoPresenter().apply {
-            App.instance.appComponent.inject(this)
-        }
+        App.instance.initReposSubcomponent()
+        App.instance.reposSubcomponent?.userInfoPresenter()!!
     }
 
     private val adapter by lazy {

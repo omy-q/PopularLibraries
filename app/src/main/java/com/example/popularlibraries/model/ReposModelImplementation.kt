@@ -6,20 +6,16 @@ import com.example.popularlibraries.remote.RetrofitService
 import com.example.popularlibraries.remote.connectivity.NetworkStatus
 import com.example.popularlibraries.room.model.RoomRepoModel
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class ReposModelImplementation(
+class ReposModelImplementation @Inject constructor(
     private val status: NetworkStatus,
     private val remoteService: RetrofitService,
     private val roomModel: RoomRepoModel
 ) : ReposModel {
     override fun getUserRepositories(user: User): Single<List<Repository>> {
         return if (status.isOnline()) {
-            remoteService.getRepositories(user.reposUrl).flatMap { repos ->
-                roomModel.saveUserRepos(repos, user.id)
-                Single.fromCallable {
-                    repos
-                }
-            }
+            remoteService.getRepositories(user.reposUrl).flatMap(roomModel::saveUserRepos)
         } else {
             roomModel.getUserRepos(user.id)
         }

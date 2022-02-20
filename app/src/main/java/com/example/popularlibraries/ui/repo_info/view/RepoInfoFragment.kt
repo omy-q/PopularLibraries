@@ -6,16 +6,14 @@ import com.example.popularlibraries.App
 import com.example.popularlibraries.data.Repository
 import com.example.popularlibraries.databinding.FragmentRepoInfoBinding
 import com.example.popularlibraries.ui.base.BaseFragment
-import com.example.popularlibraries.ui.repo_info.presenter.RepoInfoPresenter
 import moxy.ktx.moxyPresenter
 
-class RepoInfoFragment() : BaseFragment<FragmentRepoInfoBinding>(FragmentRepoInfoBinding::inflate),
+class RepoInfoFragment: BaseFragment<FragmentRepoInfoBinding>(FragmentRepoInfoBinding::inflate),
     RepoInfoView {
 
     private val presenter by moxyPresenter {
-        RepoInfoPresenter().apply {
-            App.instance.appComponent.inject(this)
-        }
+        App.instance.initRepoInfoSubcomponent()
+        App.instance.repoInfoSubcomponent?.repoInfoPresenter()!!
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

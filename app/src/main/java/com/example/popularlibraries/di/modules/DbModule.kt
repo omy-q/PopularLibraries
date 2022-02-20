@@ -14,7 +14,7 @@ import javax.inject.Singleton
 private const val DB_NAME = "database.db"
 
 @Module
-class CacheModule {
+class DbModule {
 
     @Singleton
     @Provides
@@ -23,15 +23,4 @@ class CacheModule {
             .databaseBuilder(context, DataBase::class.java, DB_NAME)
             .build()
 
-    @Singleton
-    @Provides
-    fun roomRepoModel(db: DataBase): RoomRepoModel{
-        return RoomRepoModelImplementation(db)
-    }
-
-    @Singleton
-    @Provides
-    fun roomUserModel(db: DataBase): RoomUserModel{
-        return RoomUserModelImplementation(db)
-    }
 }
